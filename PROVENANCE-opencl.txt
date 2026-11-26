@@ -1,0 +1,20 @@
+LG G4 OpenCL frontend (libOpenCL.so, 32-bit and 64-bit)
+
+Source repository: https://github.com/TheMuppets/proprietary_vendor_lge
+Branch:            lineage-15.1
+Commit:            dcd7e295e5337da76a24bb594ae82fec626baa23 (git ls-remote, 2026-11-24)
+Source paths:      g4-common/proprietary/vendor/lib/libOpenCL.so
+                   g4-common/proprietary/vendor/lib64/libOpenCL.so
+
+sha256  a14ad4381c2e9b6c2c61f7b777c4f44874a6e57f352ebf2e5c36cb3120bf2bdb  proprietary/vendor/lib/libOpenCL.so
+sha256  6587be2b3742d0043ca44910dda64ee7833b2957b16fd81ccce8aaf8b5df940d  proprietary/vendor/lib64/libOpenCL.so
+
+Link closure against this tree's libCB.so and libgsl.so (base ddf72b76):
+every cb_* and gsl_* undefined symbol resolves in both ABIs; the
+remaining undefined symbols are libc, libdl, libcutils and compiler
+runtime (lib: 23, lib64: 14).
+
+proprietary/vendor/etc/public.libraries.txt lists libOpenCL.so so that
+apps load it; /vendor/etc/public.libraries.txt is read by libnativeloader
+(art lineage-22.2, libnativeloader/public_libraries.cpp,
+kVendorPublicLibrariesFile). Device validation (clprobe) is not run.
